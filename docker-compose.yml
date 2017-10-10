@@ -1,0 +1,22 @@
+php:
+  build: .
+  ports:
+   - "80:80"
+   - "443:443"
+  links:
+   - dbpostgres
+  volumes:
+   - ./www:/var/www/html
+  environment:
+   - MY_ENV=DEV
+
+dbpostgres:
+    image: postgres
+    volumes:
+      - /private/var/lib/postgresql:/var/lib/postgresql
+    ports:
+      - "5454:5454"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+      POSTGRES_DB: postgres
